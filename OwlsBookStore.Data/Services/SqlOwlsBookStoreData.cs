@@ -23,13 +23,23 @@ namespace OwlsBookStore.Data.Services
            {
                cfg.CreateMap<Writer, WriterBaseViewModel>();
                cfg.CreateMap<WriterBaseViewModel, Writer>();
+               cfg.CreateMap<WriterBaseModel, Writer>();
                cfg.CreateMap<Writer, WriterBaseModel>();
            });
 
             mapper = config.CreateMapper();
             db.Configuration.ProxyCreationEnabled = false;
         }
+
         
+        public WriterBaseViewModel AddWriter(WriterBaseViewModel newWriter)
+        {
+            var addedWriter = db.Writers.Add(mapper.Map<WriterBaseViewModel, Writer>(newWriter));
+            db.SaveChanges();
+
+            return addedWriter == null ? null : mapper.Map<Writer, WriterBaseViewModel>(addedWriter);
+
+        }
 
         public IEnumerable<WriterBaseViewModel> GetAllWriter() 
         {

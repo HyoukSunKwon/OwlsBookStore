@@ -1,4 +1,5 @@
-﻿using OwlsBookStore.Data.Services;
+﻿using OwlsBookStore.Data.Models.ViewModels.Writer;
+using OwlsBookStore.Data.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,14 +19,33 @@ namespace OwlsBookStore.Web.Controllers
         // GET: Writer
         public ActionResult Index()
         {
-            // Get entity Model
-            var model = db.GetAllWriter();                     
-
-            // Map from entity model to View Model
-            // Mapper.Map<EntityWriter, ViewWriter>();
-
-            // return view Model
+            var model = db.GetAllWriter();     
             return View(model);
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(WriterBaseViewModel newWriter)
+        {
+            if (ModelState.IsValid)
+            {
+                var newWriterAdded = db.AddWriter(newWriter);
+
+                if (newWriterAdded == null)
+                {
+                    return View(newWriter);
+                }
+                else
+                {
+                    return RedirectToAction("Details", new { id = newWriterAdded.Id });
+                }
+            }
+            return View(newWriter);
         }
     }
 }

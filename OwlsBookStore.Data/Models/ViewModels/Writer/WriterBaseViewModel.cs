@@ -19,6 +19,6 @@ namespace OwlsBookStore.Data.Models.ViewModels.Writer
         public DateTime BirthDate { get; set; }
 
         [DataType(DataType.MultilineText)]
-        public string Potrayal { get; set; }
+        public string Portrayal { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace OwlsBookStore.Data.Services
     {
         IEnumerable<WriterBaseViewModel> GetAllWriter();
 
-
+        WriterBaseViewModel AddWriter(WriterBaseViewModel writer);
 
         //IEnumerable<Book> GetAllBooks();
     }
