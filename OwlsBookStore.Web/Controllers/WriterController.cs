@@ -19,7 +19,7 @@ namespace OwlsBookStore.Web.Controllers
         public ActionResult Index()
         {
             // Get entity Model
-            var model = db.GetAll();                     
+            var model = db.GetAllWriter();                     
 
             // Map from entity model to View Model
             // Mapper.Map<EntityWriter, ViewWriter>();

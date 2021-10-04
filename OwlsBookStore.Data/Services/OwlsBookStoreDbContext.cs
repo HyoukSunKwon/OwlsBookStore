@@ -13,10 +13,11 @@ namespace OwlsBookStore.Data.Services
     {
         public OwlsBookStoreDbContext() : base("OwlsBookStoreDbContext") 
         {}
-        public DbSet<Writer> writers { get; set; }
-        public DbSet<Genre> genres { get; set; }
-        public DbSet<BookSeries> bookSerieses { get; set; }
-        public DbSet<Book> books { get; set; }
+        public DbSet<Writer> Writers { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<BookSeries> BookSerieses { get; set; }
+        public DbSet<Book> Books { get; set; }
 
+        public System.Data.Entity.DbSet<OwlsBookStore.Data.Models.ViewModels.Writer.WriterBaseViewModel> WriterBaseViewModels { get; set; }
     }
 }
