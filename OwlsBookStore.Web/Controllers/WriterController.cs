@@ -47,5 +47,11 @@ namespace OwlsBookStore.Web.Controllers
             }
             return View(newWriter);
         }
+
+        public ActionResult Details(int id)
+        {
+            var model = db.GetWriteByIdr(id);
+            return View(model);
+        }
     }
 }

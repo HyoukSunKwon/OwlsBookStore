@@ -1,0 +1,51 @@
+﻿@model OwlsBookStore.Data.Models.ViewModels.Writer.WriterBaseViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details -  @Model.Name</h2>
+
+<div>
+    <h4> Writer with Details</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.UrlWriter)
+        </dt>
+
+        <dd>
+           <img src="@Html.Raw(Model.UrlWriter)" height="100" width="100" />
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+        <hr />
+        <dt>
+            @Html.DisplayNameFor(model => model.Portrayal)
+        </dt>
+
+        <dd>
+            <div class="panel panel-default panel-body">
+                @Html.DisplayFor(model => model.Portrayal)
+            </div>           
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

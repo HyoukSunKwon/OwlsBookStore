@@ -45,7 +45,13 @@ namespace OwlsBookStore.Data.Services
         {
             return mapper.Map<IEnumerable<Writer>, IEnumerable<WriterBaseViewModel>>(db.Writers.OrderBy(w => w.Name));
         }
-        
+
+        public WriterBaseViewModel GetWriteByIdr(int? id)
+        {
+            var writer = db.Writers.FirstOrDefault(w => w.Id == id);
+            return writer == null ? null : mapper.Map<Writer, WriterBaseViewModel>(writer);
+        }
+
         //public IEnumerable<Book> GetAllBooks()
         //{
         //    return db.books.ToList();
