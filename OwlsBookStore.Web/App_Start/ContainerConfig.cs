@@ -17,7 +17,7 @@ namespace OwlsBookStore.Web
         {
             var builder = new ContainerBuilder();
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
-            builder.RegisterType<SqlOwlsBokStoreData>()
+            builder.RegisterType<SqlOwlsBookStoreData>()
                    .As<IOwlsBookStoreData>()
                    .InstancePerRequest();
             builder.RegisterType<OwlsBookStoreDbContext>().InstancePerRequest();
@@ -25,6 +25,22 @@ namespace OwlsBookStore.Web
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
             httpConfiguration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+
+            /* https://davidsekar.com/aspnetcore/register-automapper-profiles-with-autofac
+             *  --var autoMapperProfiles = assembliesTypes
+                --    .Select(p => (Profile)Activator.CreateInstance(p)).ToList();
+
+                builder.Register(ctx => new MapperConfiguration(cfg =>
+                {
+                    --foreach (var profile in autoMapperProfiles)
+                    --{
+                        // use name of the class for auto mapping configuration
+                        cfg.AddProfile(profile);
+                    --}
+                }));
+
+                builder.Register(ctx => ctx.Resolve<MapperConfiguration>().CreateMapper()).As<IMapper>().InstancePerLifetimeScope();
+             */
         }
     }
 }
