@@ -46,10 +46,44 @@ namespace OwlsBookStore.Data.Services
             return mapper.Map<IEnumerable<Writer>, IEnumerable<WriterBaseViewModel>>(db.Writers.OrderBy(w => w.Name));
         }
 
-        public WriterBaseViewModel GetWriteByIdr(int? id)
+        public WriterBaseViewModel GetWriteById(int? id)
         {
             var writer = db.Writers.FirstOrDefault(w => w.Id == id);
             return writer == null ? null : mapper.Map<Writer, WriterBaseViewModel>(writer);
+        }
+
+
+        public bool EditWriter(WriterBaseViewModel editedWriter)
+        {
+            bool updated = false;
+            var writerFound = db.Writers.Find(editedWriter.Id);
+            if(writerFound != null)
+            {
+                db.Entry(writerFound).CurrentValues.SetValues(editedWriter);
+                var saved = db.SaveChanges();
+
+                updated = saved > 0;
+            }
+
+            return updated;
+
+        }
+
+        public bool DeleteWriter(int? id)
+        {
+            bool delete = false;
+            var writerFound = db.Writers.Find(id);
+            if(writerFound == null)
+            {
+                return false;
+            }
+            else
+            {
+                db.Writers.Remove(writerFound);
+                var save = db.SaveChanges();
+
+                return delete = save > 0;
+            }
         }
 
         //public IEnumerable<Book> GetAllBooks()

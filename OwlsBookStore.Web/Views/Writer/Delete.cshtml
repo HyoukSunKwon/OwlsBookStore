@@ -1,31 +1,35 @@
 ﻿@model OwlsBookStore.Data.Models.ViewModels.Writer.WriterBaseViewModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Delete";
 }
 
-<h2>Details -  @Model.Name</h2>
+<h2>Delete</h2>
 
+<h3>Are you sure you want to delete Athor @Model.Name?</h3>
 <div>
-    <h4> Writer with Details</h4>
+    <h4></h4>
     <hr />
     <dl class="dl-horizontal">
+
         <dt>
             @Html.DisplayNameFor(model => model.Name)
         </dt>
-
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
         <hr />
+
         <dt>
             @Html.DisplayNameFor(model => model.UrlWriter)
         </dt>
 
         <dd>
-           <img src="@Html.Raw(Model.UrlWriter)" height="100" width="100" />
+            <img src="@Html.Raw(Model.UrlWriter)" height="100" width="100" />
         </dd>
         <hr />
+
+
         <dt>
             @Html.DisplayNameFor(model => model.BirthDate)
         </dt>
@@ -34,6 +38,8 @@
             @Html.DisplayFor(model => model.BirthDate)
         </dd>
         <hr />
+
+
         <dt>
             @Html.DisplayNameFor(model => model.Portrayal)
         </dt>
@@ -41,12 +47,19 @@
         <dd>
             <div class="panel panel-default panel-body">
                 @Html.DisplayFor(model => model.Portrayal)
-            </div>           
+            </div>
         </dd>
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Back to List", "Index") |
-    @Html.ActionLink("Add Book Seriese for this Author", "AddBookSeries", new { id = Model.Id }) 
 
-</p>
+
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
