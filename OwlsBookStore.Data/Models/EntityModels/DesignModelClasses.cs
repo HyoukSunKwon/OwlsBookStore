@@ -13,7 +13,6 @@ namespace OwlsBookStore.Data.Models.EntityModels
 
         public int Id { get; set; }
 
-        [Required, StringLength(50)]
         public string Name { get; set; }
 
         public string Portrayal { get; set; }
@@ -30,19 +29,19 @@ namespace OwlsBookStore.Data.Models.EntityModels
     {
         public BookSeries()
         {
-            Genre = new Genre();
+            ReleaseDate = DateTime.Now;
             Writer = new Writer();
             Book = new List<Book>();
         }
 
-        [Required]
+   
         public int Id { get; set; }
         public string Name { get; set; }
         public string UrlBookSeries { get; set; }
         public string Publisher { get; set; }
-        public string Dipiction { get; set; }
-
-        public Genre Genre { get; set; }
+        public DateTime? ReleaseDate { get; set; }
+        public string Depiction { get; set; }
+        public string Genre { get; set; }
         public Writer Writer { get; set; }
         public ICollection<Book> Book { get; set; }
     }
@@ -58,11 +57,12 @@ namespace OwlsBookStore.Data.Models.EntityModels
         public Book()
         {
             BookSeries = new BookSeries();
+            ReleaseDate = DateTime.Now;
         }
         public int Id { get; set; }
         public string Name { get; set; }
         public string UrlBook { get; set; }
-        public DateTime ReleaseDate { get; set; }
+        public DateTime? ReleaseDate { get; set; }
 
         public BookSeries BookSeries { get; set; }
 

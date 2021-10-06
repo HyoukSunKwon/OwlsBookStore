@@ -168,6 +168,7 @@
     <Compile Include="App_Start\ContainerConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\BookSeriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\WriterController.cs" />
     <Compile Include="Global.asax.cs">
@@ -216,6 +217,9 @@
     <Content Include="Views\Writer\Details.cshtml" />
     <Content Include="Views\Writer\Edit.cshtml" />
     <Content Include="Views\Writer\Delete.cshtml" />
+    <Content Include="Views\Writer\AddBookSeries.cshtml" />
+    <Content Include="Views\BookSeries\Index.cshtml" />
+    <Content Include="Views\BookSeries\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

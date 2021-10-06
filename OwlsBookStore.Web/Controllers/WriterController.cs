@@ -1,4 +1,5 @@
-﻿using OwlsBookStore.Data.Models.ViewModels.Writer;
+﻿using OwlsBookStore.Data.Models.ViewModels.BookSeriese;
+using OwlsBookStore.Data.Models.ViewModels.Writer;
 using OwlsBookStore.Data.Services;
 using System;
 using System.Collections.Generic;
@@ -30,6 +31,7 @@ namespace OwlsBookStore.Web.Controllers
             return View();
         }
 
+        [ValidateInput(false)]
         [HttpPost]
         public ActionResult Create(WriterBaseViewModel newWriter)
         {
@@ -140,9 +142,35 @@ namespace OwlsBookStore.Web.Controllers
             }
         }
 
+        [HttpGet]
         public ActionResult AddBookSeries(int? id)
         {
-
+            var form = new BookSeriesAddFormViewModel();
+            var genreList = db.GetAllGenre();
+            form.Writer = db.GetWriteById(id);
+            form.GenreList = new SelectList(genreList, "Name", "Name");
+            return View(form);
         }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        //[Route("Writer/AddBookSeries/{id}")]
+        public ActionResult AddBookSeries(BookSeriesAddFormViewModel newBookSeries)
+        {
+            if(ModelState.IsValid)
+            {
+                //newBookSeries.Id = 0;
+                BookSeriesAddFormViewModel newBookSeriesAdded = db.AddBookSeries(newBookSeries);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                var genreList = db.GetAllGenre();
+                newBookSeries.GenreList = new SelectList(genreList, "Name", "Name");
+                return View(newBookSeries);
+            }
+        }
+
     }
 }
