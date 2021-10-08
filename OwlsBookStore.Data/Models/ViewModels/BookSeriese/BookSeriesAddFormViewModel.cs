@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace OwlsBookStore.Data.Models.ViewModels.BookSeriese
 {
-    public class BookSeriesAddFormViewModel : BookSeriesBaseViewModel
+    public class BookSeriesAddFormViewModel : BookSeriesWithDetailViewModel
     {
 
         public SelectList GenreList { get; set; }

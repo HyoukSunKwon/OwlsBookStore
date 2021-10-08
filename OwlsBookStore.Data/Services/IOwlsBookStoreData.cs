@@ -20,9 +20,9 @@ namespace OwlsBookStore.Data.Services
         bool EditWriter(WriterBaseViewModel editedWriter);
         bool DeleteWriter(int? id);
         IEnumerable<GenreBaseModel> GetAllGenre();
-        IEnumerable<BookSeriesBaseViewModel> GetAllBookSeries();
+        IEnumerable<BookSeriesWithDetailViewModel> GetAllBookSeries();
         BookSeriesAddFormViewModel AddBookSeries(BookSeriesAddFormViewModel newBookSeries);
-        BookSeriesBaseViewModel GetBookSeriesById(int? id);
+        BookSeriesWithDetailViewModel GetBookSeriesById(int? id);
 
         //IEnumerable<Book> GetAllBooks();
     }

@@ -220,6 +220,7 @@
     <Content Include="Views\Writer\DeletedConfirm.cshtml" />
     <Content Include="Views\Writer\AddBookSeries.cshtml" />
     <Content Include="Views\BookSeries\Index.cshtml" />
+    <Content Include="Views\BookSeries\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

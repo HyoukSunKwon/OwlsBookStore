@@ -1,0 +1,84 @@
+﻿@model OwlsBookStore.Data.Models.ViewModels.BookSeriese.BookSeriesWithDetailViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details of @Model.Name</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+            <hr />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UrlBookSeriese)
+        </dt>
+
+        <dd>
+            <img src="@Html.DisplayFor(model => model.UrlBookSeriese)" height="100" width="100" />
+            <hr />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Publisher)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Publisher)
+            <hr />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Genre)
+            <hr />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+            <hr />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReleaseDate)
+            <hr />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Depiction)
+        </dt>
+
+        <dd>
+            <div class="panel panel-default panel-body">
+                @Html.Raw(Model.Depiction)
+            </div>
+            <hr />
+        </dd>
+        @*<div class="panel panel-default panel-body">
+            @Html.Raw(Model.Portrayal)
+        </div>*@
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

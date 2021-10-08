@@ -30,10 +30,10 @@ namespace OwlsBookStore.Data.Services
                cfg.CreateMap<Writer, WriterDetailViewModel>();
 
                cfg.CreateMap<BookSeries, BookSeriesBaseModel>();
-               cfg.CreateMap<BookSeries, BookSeriesBaseViewModel>();
+               cfg.CreateMap<BookSeries, BookSeriesWithDetailViewModel>();
                cfg.CreateMap<BookSeries, BookSeriesAddFormViewModel>();
                cfg.CreateMap<BookSeriesAddFormViewModel, BookSeries>();
-               cfg.CreateMap<BookSeriesBaseViewModel, BookSeries>();
+               cfg.CreateMap<BookSeriesWithDetailViewModel, BookSeries>();
                // ??????????????
                cfg.CreateMap<BookSeriesAddFormViewModel, Writer>();
 
@@ -113,9 +113,9 @@ namespace OwlsBookStore.Data.Services
             return mapper.Map<IEnumerable<Genre>, IEnumerable<GenreBaseModel>>(db.Genres.OrderBy(bs => bs.Name));
         }
 
-        public IEnumerable<BookSeriesBaseViewModel> GetAllBookSeries()
+        public IEnumerable<BookSeriesWithDetailViewModel> GetAllBookSeries()
         {
-            return mapper.Map<IEnumerable<BookSeries>, IEnumerable<BookSeriesBaseViewModel>>(db.BookSerieses.OrderBy(bs => bs.Name));
+            return mapper.Map<IEnumerable<BookSeries>, IEnumerable<BookSeriesWithDetailViewModel>>(db.BookSerieses.OrderBy(bs => bs.Name));
         }
 
         public BookSeriesAddFormViewModel AddBookSeries(BookSeriesAddFormViewModel newBookSeries)
@@ -130,10 +130,10 @@ namespace OwlsBookStore.Data.Services
             return addedNewBookSeries == null ? null : mapper.Map<BookSeries, BookSeriesAddFormViewModel>(addedNewBookSeries);
         }
 
-        public BookSeriesBaseViewModel GetBookSeriesById(int? id)
+        public BookSeriesWithDetailViewModel GetBookSeriesById(int? id)
         {
             var bookSeries = db.BookSerieses.FirstOrDefault(bs => bs.Id == id);
-            return bookSeries == null ? null : mapper.Map<BookSeries, BookSeriesBaseViewModel>(bookSeries);
+            return bookSeries == null ? null : mapper.Map<BookSeries, BookSeriesWithDetailViewModel>(bookSeries);
         }
 
        

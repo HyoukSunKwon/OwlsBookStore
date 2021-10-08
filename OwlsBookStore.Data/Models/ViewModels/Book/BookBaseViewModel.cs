@@ -12,6 +12,6 @@ namespace OwlsBookStore.Data.Models.ViewModels.Book
         public string UrlBook{ get; set; }
         public DateTime? ReleseDate { get; set; }
 
-        public BookSeriesBaseViewModel BookSeries { get; set; }
+        public BookSeriesWithDetailViewModel BookSeries { get; set; }
     }
 }
