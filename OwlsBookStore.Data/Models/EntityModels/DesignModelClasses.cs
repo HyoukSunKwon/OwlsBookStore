@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OwlsBookStore.Data.Models.ViewModels.BookSeriese;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -65,6 +66,7 @@ namespace OwlsBookStore.Data.Models.EntityModels
         public DateTime? ReleaseDate { get; set; }
 
         public BookSeries BookSeries { get; set; }
+       // public Writer Writer { get; set; }
 
     }
 }

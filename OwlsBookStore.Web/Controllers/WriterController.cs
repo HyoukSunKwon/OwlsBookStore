@@ -57,7 +57,9 @@ namespace OwlsBookStore.Web.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            var model = db.GetWriteById(id);
+            var model = db.GetWriterById(id);
+            //model.BookSeries = new ICollection<BookSeriesBaseViewModel>();
+            //addedNewBookSeries.Writer = db.Writers.Find(newBookSeries.Writer.Id);
 
             if ( model == null)
             {
@@ -67,6 +69,7 @@ namespace OwlsBookStore.Web.Controllers
             return View(model);
         }
 
+
         [HttpGet]
         public ActionResult Edit(int? id)
         {
@@ -75,7 +78,7 @@ namespace OwlsBookStore.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            var model = db.GetWriteById(id);
+            var model = db.GetWriterById(id);
             if(model == null)
             {
                 return HttpNotFound();
@@ -111,7 +114,7 @@ namespace OwlsBookStore.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            WriterBaseViewModel writer = db.GetWriteById(id);
+            WriterBaseViewModel writer = db.GetWriterById(id);
             if(writer == null)
             {
                 return HttpNotFound();
@@ -129,12 +132,12 @@ namespace OwlsBookStore.Web.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            WriterBaseViewModel writerToDeleted = db.GetWriteById(id);
+            WriterBaseViewModel writerToDeleted = db.GetWriterById(id);
             bool isDeleted = db.DeleteWriter(id);
 
             if(isDeleted)
             {
-                return RedirectToAction("Index");
+                return View("DeletedConfirm");
             }
             else
             {
@@ -147,7 +150,7 @@ namespace OwlsBookStore.Web.Controllers
         {
             var form = new BookSeriesAddFormViewModel();
             var genreList = db.GetAllGenre();
-            form.Writer = db.GetWriteById(id);
+            form.Writer = db.GetWriterById(id);
             form.GenreList = new SelectList(genreList, "Name", "Name");
             return View(form);
         }
@@ -162,7 +165,7 @@ namespace OwlsBookStore.Web.Controllers
             {
                 //newBookSeries.Id = 0;
                 BookSeriesAddFormViewModel newBookSeriesAdded = db.AddBookSeries(newBookSeries);
-                return RedirectToAction("Index");
+                return View("Details","BookSeries", new { newBookSeriesAdded.Id });
             }
             else
             {

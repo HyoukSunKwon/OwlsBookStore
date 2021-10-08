@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace OwlsBookStore.Data.Models.ViewModels.Book
 {
-    class BookBaseModel
+    public class BookBaseModel
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
     }
 }

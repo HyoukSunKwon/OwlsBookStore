@@ -214,12 +214,12 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Writer\Index.cshtml" />
     <Content Include="Views\Writer\Create.cshtml" />
-    <Content Include="Views\Writer\Details.cshtml" />
     <Content Include="Views\Writer\Edit.cshtml" />
     <Content Include="Views\Writer\Delete.cshtml" />
+    <Content Include="Views\Writer\Details.cshtml" />
+    <Content Include="Views\Writer\DeletedConfirm.cshtml" />
     <Content Include="Views\Writer\AddBookSeries.cshtml" />
     <Content Include="Views\BookSeries\Index.cshtml" />
-    <Content Include="Views\BookSeries\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

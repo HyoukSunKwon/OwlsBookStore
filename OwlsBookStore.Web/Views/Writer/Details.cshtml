@@ -1,13 +1,13 @@
-﻿@model OwlsBookStore.Data.Models.ViewModels.Writer.WriterBaseViewModel
+﻿@model OwlsBookStore.Data.Models.ViewModels.Writer.WriterDetailViewModel
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details -  @Model.Name</h2>
+<h2>Details of @Model.Name</h2>
 
 <div>
-    <h4> Writer with Details</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -16,27 +16,22 @@
 
         <dd>
             @Html.DisplayFor(model => model.Name)
-
             <hr />
         </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UrlWriter)
-        </dt>
-
-        <dd>
-            <img src="@Html.Raw(Model.UrlWriter)" height="100" width="100" />
-
-            <hr />
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.BirthDate)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.BirthDate)
+            <hr />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UrlWriter)
+        </dt>
 
+        <dd>
+            <img src="@Html.Raw(Model.UrlWriter)" height="100"  width="100" />
             <hr />
         </dd>
 
@@ -46,14 +41,29 @@
 
         <dd>
             <div class="panel panel-default panel-body">
-                @Html.DisplayFor(model => model.Portrayal)
-            </div>           
+                @Html.Raw(Model.Portrayal)
+            </div>
         </dd>
+
+
+        <dt>
+            Book Series
+        </dt>
+        <dd>
+            <hr />
+        </dd>
+        @*<dd>
+            @foreach (var item in Model.BookSeries)
+            {
+                @item.Name
+            }
+        </dd>*@
 
     </dl>
 </div>
 <p>
     @Html.ActionLink("Back to List", "Index") |
-    @Html.ActionLink("Add Book Seriese for this Author", "AddBookSeries", new { id = Model.Id }) 
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Add Book Seriese for this Author", "AddBookSeries", new { id = Model.Id } )
 
 </p>

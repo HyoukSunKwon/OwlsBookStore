@@ -6,6 +6,7 @@ using OwlsBookStore.Data.Models.ViewModels.Genre;
 using OwlsBookStore.Data.Models.ViewModels.Writer;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,14 +26,15 @@ namespace OwlsBookStore.Data.Services
            {
                cfg.CreateMap<Writer, WriterBaseViewModel>();
                cfg.CreateMap<WriterBaseViewModel, Writer>();
-               cfg.CreateMap<WriterBaseModel, Writer>();
                cfg.CreateMap<Writer, WriterBaseModel>();
+               cfg.CreateMap<Writer, WriterDetailViewModel>();
 
                cfg.CreateMap<BookSeries, BookSeriesBaseModel>();
                cfg.CreateMap<BookSeries, BookSeriesBaseViewModel>();
                cfg.CreateMap<BookSeries, BookSeriesAddFormViewModel>();
                cfg.CreateMap<BookSeriesAddFormViewModel, BookSeries>();
                cfg.CreateMap<BookSeriesBaseViewModel, BookSeries>();
+               // ??????????????
                cfg.CreateMap<BookSeriesAddFormViewModel, Writer>();
 
                cfg.CreateMap<Genre, GenreBaseModel>();
@@ -57,7 +59,16 @@ namespace OwlsBookStore.Data.Services
             return mapper.Map<IEnumerable<Writer>, IEnumerable<WriterBaseViewModel>>(db.Writers.OrderBy(w => w.Name));
         }
 
-        public WriterBaseViewModel GetWriteById(int? id)
+        public WriterDetailViewModel GetWriterById(int? id)
+        {
+            var writer = db.Writers.Include(i => i.BookSerieses).FirstOrDefault(w => w.Id == id);
+            //var writer = db.Writers.Include(i => i.).FirstOrDefault(w => w.Id == id);
+            //writer.BookSerieses = db.BookSerieses.Finsd(writer.Id);
+            //addedNewBookSeries.Writer = db.Writers.Find(newBookSeries.Writer.Id);
+            return writer == null ? null : mapper.Map<Writer, WriterDetailViewModel>(writer);
+        }
+
+        public WriterBaseViewModel GetWriterBaseInfoById(int? id)
         {
             var writer = db.Writers.FirstOrDefault(w => w.Id == id);
             return writer == null ? null : mapper.Map<Writer, WriterBaseViewModel>(writer);
@@ -124,6 +135,8 @@ namespace OwlsBookStore.Data.Services
             var bookSeries = db.BookSerieses.FirstOrDefault(bs => bs.Id == id);
             return bookSeries == null ? null : mapper.Map<BookSeries, BookSeriesBaseViewModel>(bookSeries);
         }
+
+       
     }
         
 }

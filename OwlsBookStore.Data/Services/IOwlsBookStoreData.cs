@@ -15,7 +15,8 @@ namespace OwlsBookStore.Data.Services
     {
         IEnumerable<WriterBaseViewModel> GetAllWriter();
         WriterBaseViewModel AddWriter(WriterBaseViewModel writer);
-        WriterBaseViewModel GetWriteById(int? id);
+        WriterBaseViewModel GetWriterBaseInfoById(int? id);
+        WriterDetailViewModel GetWriterById(int? id);
         bool EditWriter(WriterBaseViewModel editedWriter);
         bool DeleteWriter(int? id);
         IEnumerable<GenreBaseModel> GetAllGenre();
