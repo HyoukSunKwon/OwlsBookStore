@@ -34,6 +34,8 @@ namespace OwlsBookStore.Data.Services
                cfg.CreateMap<BookSeries, BookSeriesAddFormViewModel>();
                cfg.CreateMap<BookSeriesAddFormViewModel, BookSeries>();
                cfg.CreateMap<BookSeriesWithDetailViewModel, BookSeries>();
+               cfg.CreateMap<BookSeries, BookSeriesBaseViewModel>();
+               cfg.CreateMap<BookSeriesBaseViewModel, BookSeries>();
                // ??????????????
                cfg.CreateMap<BookSeriesAddFormViewModel, Writer>();
 
@@ -136,7 +138,44 @@ namespace OwlsBookStore.Data.Services
             return bookSeries == null ? null : mapper.Map<BookSeries, BookSeriesWithDetailViewModel>(bookSeries);
         }
 
-       
+
+        public bool EditBookSeries(BookSeriesWithDetailViewModel editBookSeries)
+        {
+            bool updated = false;
+            var bookSeriesFound = db.BookSerieses.Find(editBookSeries.Id);
+            if( bookSeriesFound != null)
+            {
+                db.Entry(bookSeriesFound).CurrentValues.SetValues(editBookSeries);
+                var saved = db.SaveChanges();
+                updated = saved > 0;
+            }
+
+            return updated;
+        }
+
+        public bool DeleteBookSeries(int? id)
+        {
+            bool delete = false;
+            var bookSeriesFound = db.BookSerieses.Find(id);
+            if(bookSeriesFound == null)
+            {
+                return delete;
+            }
+            else
+            {
+                db.BookSerieses.Remove(bookSeriesFound);
+                var save = db.SaveChanges();
+
+                return delete = save > 0;
+            }
+        }
+
+        public BookSeriesBaseViewModel GetbookSeriesBaseInfoById(int? id)
+        {
+            var bookSeries = db.BookSerieses.FirstOrDefault(bs => bs.Id == id);
+            return bookSeries == null ? null : mapper.Map<BookSeries, BookSeriesBaseViewModel>(bookSeries);
+        }
+
     }
         
 }

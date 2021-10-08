@@ -29,6 +29,7 @@ namespace OwlsBookStore.Data.Models.ViewModels.BookSeriese
         [DataType(DataType.Date)]
         [Display(Name="Release Date")]
         public DateTime? ReleaseDate { get; set; }
+
         [DataType(DataType.MultilineText)]
         public string Depiction { get; set; }
 

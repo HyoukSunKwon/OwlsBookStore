@@ -221,6 +221,8 @@
     <Content Include="Views\Writer\AddBookSeries.cshtml" />
     <Content Include="Views\BookSeries\Index.cshtml" />
     <Content Include="Views\BookSeries\Details.cshtml" />
+    <Content Include="Views\BookSeries\Edit.cshtml" />
+    <Content Include="Views\BookSeries\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

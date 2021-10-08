@@ -165,7 +165,8 @@ namespace OwlsBookStore.Web.Controllers
             {
                 //newBookSeries.Id = 0;
                 BookSeriesAddFormViewModel newBookSeriesAdded = db.AddBookSeries(newBookSeries);
-                return View("Details","BookSeries", new { newBookSeriesAdded.Id });
+                return View("Details", "BookSeries", new { newBookSeriesAdded.Id });
+
             }
             else
             {

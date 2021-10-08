@@ -1,4 +1,5 @@
-﻿using OwlsBookStore.Data.Services;
+﻿using OwlsBookStore.Data.Models.ViewModels.BookSeriese;
+using OwlsBookStore.Data.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,5 +39,87 @@ namespace OwlsBookStore.Web.Controllers
 
             return View(model);
         }
+
+        [HttpGet]
+        public ActionResult Edit(int? id)
+        {
+            if( id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+
+            var model = db.GetBookSeriesById(id);
+            if( model == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
+        public ActionResult Edit(BookSeriesWithDetailViewModel editBookSeries)
+        {
+            if( ModelState.IsValid)
+            {
+                var isEdittedBookSeries = db.EditBookSeries(editBookSeries);
+                
+                if( ! isEdittedBookSeries)
+                {
+                    return View(editBookSeries);
+                }
+                else
+                {
+                    RedirectToAction("Detail", new { id = editBookSeries.Id });
+                }
+            }
+
+            return View(editBookSeries);
+        }
+
+        [HttpGet]
+        public ActionResult Delete(int? id)
+        {
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+
+            BookSeriesBaseViewModel bookSeries = db.GetbookSeriesBaseInfoById(id);
+            if(bookSeries == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(bookSeries);
+
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+        public ActionResult DeleteConfrim(int? id)
+        {
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
+            }
+
+            BookSeriesBaseViewModel bookSeriesToDeleted = db.GetbookSeriesBaseInfoById(id);
+            bool isDeleted = db.DeleteBookSeries(id);
+
+            if( isDeleted)
+            {
+                return View("Index");
+            }
+            else
+            {
+                return View(bookSeriesToDeleted);
+            }
+
+        }
+
     }
 }
