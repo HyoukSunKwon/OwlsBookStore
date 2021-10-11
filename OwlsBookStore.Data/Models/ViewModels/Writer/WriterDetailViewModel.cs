@@ -10,6 +10,10 @@ namespace OwlsBookStore.Data.Models.ViewModels.Writer
 {
     public class WriterDetailViewModel : WriterBaseViewModel
     {
-        public ICollection<BookSeriesWithDetailViewModel> BookSeries { get; set; }
+        public WriterDetailViewModel()
+        {
+            BookSerieses = new List<BookSeriesBaseViewModel>();
+        }
+        public ICollection<BookSeriesBaseViewModel> BookSerieses { get; set; }
     }
 }

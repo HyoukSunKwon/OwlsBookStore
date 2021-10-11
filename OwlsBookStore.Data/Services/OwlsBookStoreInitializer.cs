@@ -28,7 +28,7 @@ namespace OwlsBookStore.Data.Services
             context.Genres.Add(new Genre { Name = "Advanture" });
             context.SaveChanges();
 
-            var Rick = context.Writers.SingleOrDefault(w => w.Name == "Rick Riordon");
+            var Rick = context.Writers.SingleOrDefault(w => w.Name == "Rick Riordan");
             var Sarah = context.Writers.SingleOrDefault(w => w.Name == "Sarah J. Maas");
             var Stephenie = context.Writers.SingleOrDefault(w => w.Name == "Stephenie Meyer");
 

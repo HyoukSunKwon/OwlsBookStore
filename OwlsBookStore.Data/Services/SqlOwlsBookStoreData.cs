@@ -26,20 +26,16 @@ namespace OwlsBookStore.Data.Services
            {
                cfg.CreateMap<Writer, WriterBaseViewModel>();
                cfg.CreateMap<WriterBaseViewModel, Writer>();
-               cfg.CreateMap<Writer, WriterBaseModel>();
+               cfg.CreateMap<Writer, WriterBaseModel>().ReverseMap();
                cfg.CreateMap<Writer, WriterDetailViewModel>();
 
                cfg.CreateMap<BookSeries, BookSeriesBaseModel>();
                cfg.CreateMap<BookSeries, BookSeriesWithDetailViewModel>();
                cfg.CreateMap<BookSeries, BookSeriesAddFormViewModel>();
-               cfg.CreateMap<BookSeriesAddFormViewModel, BookSeries>();
-               cfg.CreateMap<BookSeriesWithDetailViewModel, BookSeries>();
                cfg.CreateMap<BookSeries, BookSeriesBaseViewModel>();
-               cfg.CreateMap<BookSeriesBaseViewModel, BookSeries>();
-               // ??????????????
-               cfg.CreateMap<BookSeriesAddFormViewModel, Writer>();
+               cfg.CreateMap<BookSeriesAddFormViewModel, BookSeries>();
 
-               cfg.CreateMap<Genre, GenreBaseModel>();
+               cfg.CreateMap<Genre, GenreBaseModel>().ReverseMap();
            });
 
             mapper = config.CreateMapper();
@@ -135,6 +131,8 @@ namespace OwlsBookStore.Data.Services
         public BookSeriesWithDetailViewModel GetBookSeriesById(int? id)
         {
             var bookSeries = db.BookSerieses.FirstOrDefault(bs => bs.Id == id);
+            //
+            //bookSeries.Writer = db.Writers.Find(bookSeries.Writer.Id);
             return bookSeries == null ? null : mapper.Map<BookSeries, BookSeriesWithDetailViewModel>(bookSeries);
         }
 
@@ -146,6 +144,7 @@ namespace OwlsBookStore.Data.Services
             if( bookSeriesFound != null)
             {
                 db.Entry(bookSeriesFound).CurrentValues.SetValues(editBookSeries);
+                //bookSeriesFound.ReleaseDate = DateTime.Now;
                 var saved = db.SaveChanges();
                 updated = saved > 0;
             }
@@ -163,6 +162,7 @@ namespace OwlsBookStore.Data.Services
             }
             else
             {
+                bookSeriesFound.ReleaseDate = DateTime.Now;
                 db.BookSerieses.Remove(bookSeriesFound);
                 var save = db.SaveChanges();
 

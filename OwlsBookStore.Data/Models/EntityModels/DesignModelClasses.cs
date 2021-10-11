@@ -40,7 +40,7 @@ namespace OwlsBookStore.Data.Models.EntityModels
         public string Name { get; set; }
         public string UrlBookSeries { get; set; }
         public string Publisher { get; set; }
-        public DateTime? ReleaseDate { get; set; }
+        public DateTime ReleaseDate { get; set; }
         public string Depiction { get; set; }
         public string Genre { get; set; }
         public Writer Writer { get; set; }
@@ -63,10 +63,10 @@ namespace OwlsBookStore.Data.Models.EntityModels
         public int Id { get; set; }
         public string Name { get; set; }
         public string UrlBook { get; set; }
-        public DateTime? ReleaseDate { get; set; }
+        public DateTime ReleaseDate { get; set; }
 
         public BookSeries BookSeries { get; set; }
-       // public Writer Writer { get; set; }
+        // public Writer Writer { get; set; }
 
     }
 }

@@ -60,6 +60,7 @@ namespace OwlsBookStore.Web.Controllers
             var model = db.GetWriterById(id);
             //model.BookSeries = new ICollection<BookSeriesBaseViewModel>();
             //addedNewBookSeries.Writer = db.Writers.Find(newBookSeries.Writer.Id);
+           
 
             if ( model == null)
             {
@@ -165,7 +166,7 @@ namespace OwlsBookStore.Web.Controllers
             {
                 //newBookSeries.Id = 0;
                 BookSeriesAddFormViewModel newBookSeriesAdded = db.AddBookSeries(newBookSeries);
-                return View("Details", "BookSeries", new { newBookSeriesAdded.Id });
+                return RedirectToAction("Details", "BookSeries", new { newBookSeriesAdded.Id });
 
             }
             else
