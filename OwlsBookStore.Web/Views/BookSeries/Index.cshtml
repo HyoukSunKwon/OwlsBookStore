@@ -15,7 +15,7 @@
             @Html.DisplayNameFor(model => model.Writer)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.UrlBookSeriese)
+            @Html.DisplayNameFor(model => model.UrlBookSeries)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Publisher)
@@ -40,10 +40,10 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Writer)
+            @Html.DisplayFor(modelItem => item.Writer.Name)
         </td>
         <td>
-            <img src="@Html.DisplayFor(modelItem => item.UrlBookSeriese)"  height="100" width="100"/>
+            <img src="@Html.DisplayFor(modelItem => item.UrlBookSeries)"  height="100" width="100"/>
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Publisher)

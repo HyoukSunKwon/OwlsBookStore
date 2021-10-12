@@ -33,6 +33,7 @@ namespace OwlsBookStore.Data.Services
                cfg.CreateMap<BookSeries, BookSeriesWithDetailViewModel>();
                cfg.CreateMap<BookSeries, BookSeriesAddFormViewModel>();
                cfg.CreateMap<BookSeries, BookSeriesBaseViewModel>();
+               cfg.CreateMap<BookSeriesBaseViewModel, BookSeries>();
                cfg.CreateMap<BookSeriesAddFormViewModel, BookSeries>();
 
                cfg.CreateMap<Genre, GenreBaseModel>().ReverseMap();
@@ -108,12 +109,14 @@ namespace OwlsBookStore.Data.Services
 
         public IEnumerable<GenreBaseModel> GetAllGenre()
         {
-            return mapper.Map<IEnumerable<Genre>, IEnumerable<GenreBaseModel>>(db.Genres.OrderBy(bs => bs.Name));
+            var genre_list = db.Genres.OrderBy(bs => bs.Name);
+            return mapper.Map<IEnumerable<Genre>, IEnumerable<GenreBaseModel>>(genre_list);
         }
 
         public IEnumerable<BookSeriesWithDetailViewModel> GetAllBookSeries()
         {
-            return mapper.Map<IEnumerable<BookSeries>, IEnumerable<BookSeriesWithDetailViewModel>>(db.BookSerieses.OrderBy(bs => bs.Name));
+            var bookSerieses = db.BookSerieses.Include(b=> b.Writer).OrderBy(bs => bs.Name);
+            return mapper.Map<IEnumerable<BookSeries>, IEnumerable<BookSeriesWithDetailViewModel>>(bookSerieses);
         }
 
         public BookSeriesAddFormViewModel AddBookSeries(BookSeriesAddFormViewModel newBookSeries)

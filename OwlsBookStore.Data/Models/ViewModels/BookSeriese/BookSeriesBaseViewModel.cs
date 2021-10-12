@@ -15,25 +15,24 @@ namespace OwlsBookStore.Data.Models.ViewModels.BookSeriese
         public BookSeriesBaseViewModel()
         {
             ReleaseDate = DateTime.Now;
-            //_Writer = new WriterBaseViewModel();
         }
         [Display(Name="Image Of Book Series")]
-        public string UrlBookSeriese { get; set; }
+        public string UrlBookSeries { get; set; }
 
         [Display(Name="Book Publisher")]
         public string Publisher { get; set; }
         public string Genre { get; set; }
-        public string Writer { get; set; }
+        //public string Writer { get; set; }
 
         [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         [Display(Name="Release Date")]
-        public DateTime ReleaseDate { get; set; }
+        public DateTime? ReleaseDate { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string Depiction { get; set; }
 
-        //public WriterBaseViewModel _Writer { get; set; }
+        public WriterBaseViewModel Writer { get; set; }
 
     }
 }

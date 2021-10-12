@@ -72,7 +72,7 @@ namespace OwlsBookStore.Web.Controllers
                 }
                 else
                 {
-                    RedirectToAction("Detail", new { id = editBookSeries.Id });
+                    return RedirectToAction("Details", new { id = editBookSeries.Id });
                 }
             }
 
@@ -112,7 +112,7 @@ namespace OwlsBookStore.Web.Controllers
 
             if( isDeleted)
             {
-                return View("Index");
+                return RedirectToAction("Index");
             }
             else
             {

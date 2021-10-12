@@ -11,8 +11,7 @@ namespace OwlsBookStore.Data.Services
     public class OwlsBookStoreInitializer : System.Data.Entity.DropCreateDatabaseIfModelChanges<OwlsBookStoreDbContext>
     {
         protected override void Seed(OwlsBookStoreDbContext context)
-        {
-        
+        {        
             var writers = new List<Writer>
             {
                 new Writer{ Name="Rick Riordan", BirthDate=DateTime.Parse("2000-09-01"), Portrayal="ddddd", UrlWriter="https://images.gr-assets.com/authors/1608906571p5/15872.jpg" },
