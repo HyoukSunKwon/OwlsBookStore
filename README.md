@@ -5,12 +5,6 @@
   Organizing author list and their book series list. The author has their all series book lists and each book series also contains their's book lists and detailed information.
   Users can easily find the author and their book list orderly.
   
-# Purpose
-  I want to study Asp.net with this project. <br />
-  I understand MVC model and Entity Framework. <br />
-  I can handle data: create, edit, delete data with several related data table. <br />
-  I can create front page view with Razor. 
-  
  # Funtionalities :
  &nbsp; 1. List of Author : Be able to see the Author list with their simple information. <br />
  &nbsp; 2. Create, Edit, Delete, Detail of Author : Create Author and display author with their detailed information, edit and delete author from DB. <br />
@@ -21,6 +15,11 @@
  
  # Tool and language : 
   &nbsp; Visual studio 2019, Razor, c#
+  
+  # What I learn ...
+  I understand MVC model and Entity Framework. <br />
+  I can handle data: create, edit, delete data with several related data table. <br />
+  I can create front page view with Razor. 
   
   
  
