@@ -1,2 +1,2 @@
 # OwlsBookStore
-![OwlsBookStore](sampla.gif)
+![OwlsBookStore](OwlsBookStore.gif)
