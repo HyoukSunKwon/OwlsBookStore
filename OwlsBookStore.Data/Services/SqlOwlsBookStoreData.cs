@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using OwlsBookStore.Data.Models;
 using OwlsBookStore.Data.Models.EntityModels;
+using OwlsBookStore.Data.Models.ViewModels.Book;
 using OwlsBookStore.Data.Models.ViewModels.BookSeriese;
 using OwlsBookStore.Data.Models.ViewModels.Genre;
 using OwlsBookStore.Data.Models.ViewModels.Writer;
@@ -37,6 +38,10 @@ namespace OwlsBookStore.Data.Services
                cfg.CreateMap<BookSeriesAddFormViewModel, BookSeries>();
 
                cfg.CreateMap<Genre, GenreBaseModel>().ReverseMap();
+
+               cfg.CreateMap<Book, BookBaseModel>();
+               cfg.CreateMap<Book, BookBaseViewModel>();
+
            });
 
             mapper = config.CreateMapper();
@@ -133,14 +138,15 @@ namespace OwlsBookStore.Data.Services
 
         public BookSeriesWithDetailViewModel GetBookSeriesById(int? id)
         {
-            var bookSeries = db.BookSerieses.FirstOrDefault(bs => bs.Id == id);
+            //var bookSeries = db.BookSerieses.FirstOrDefault(bs => bs.Id == id);
             //
+            var bookSeries = db.BookSerieses.Include(w => w.Writer).Include( b => b.Books).FirstOrDefault(bs => bs.Id == id);
             //bookSeries.Writer = db.Writers.Find(bookSeries.Writer.Id);
             return bookSeries == null ? null : mapper.Map<BookSeries, BookSeriesWithDetailViewModel>(bookSeries);
         }
 
 
-        public bool EditBookSeries(BookSeriesWithDetailViewModel editBookSeries)
+        public bool EditBookSeries(BookSeriesAddFormViewModel editBookSeries)
         {
             bool updated = false;
             var bookSeriesFound = db.BookSerieses.Find(editBookSeries.Id);
@@ -175,8 +181,14 @@ namespace OwlsBookStore.Data.Services
 
         public BookSeriesBaseViewModel GetbookSeriesBaseInfoById(int? id)
         {
-            var bookSeries = db.BookSerieses.FirstOrDefault(bs => bs.Id == id);
+            var bookSeries = db.BookSerieses.Include(w => w.Writer).FirstOrDefault(bs => bs.Id == id);
             return bookSeries == null ? null : mapper.Map<BookSeries, BookSeriesBaseViewModel>(bookSeries);
+        }
+
+        public BookSeriesAddFormViewModel GetBookSeriesAddFormInfo(int? id)
+        {
+            var bookSeries = db.BookSerieses.Include(w => w.Writer).FirstOrDefault(bs => bs.Id == id);
+            return bookSeries == null ? null : mapper.Map<BookSeries, BookSeriesAddFormViewModel>(bookSeries);
         }
 
     }

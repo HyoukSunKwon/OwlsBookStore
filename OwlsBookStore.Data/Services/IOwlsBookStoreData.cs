@@ -23,9 +23,11 @@ namespace OwlsBookStore.Data.Services
         IEnumerable<BookSeriesWithDetailViewModel> GetAllBookSeries();
         BookSeriesAddFormViewModel AddBookSeries(BookSeriesAddFormViewModel newBookSeries);
         BookSeriesWithDetailViewModel GetBookSeriesById(int? id);
-        bool EditBookSeries(BookSeriesWithDetailViewModel editBookSeries);
+        bool EditBookSeries(BookSeriesAddFormViewModel editBookSeries);
         bool DeleteBookSeries(int? id);
         BookSeriesBaseViewModel GetbookSeriesBaseInfoById(int? id);
+        BookSeriesAddFormViewModel GetBookSeriesAddFormInfo(int? id);
+
 
         //IEnumerable<Book> GetAllBooks();
     }

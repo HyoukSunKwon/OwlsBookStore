@@ -1,35 +1,35 @@
-﻿@model OwlsBookStore.Data.Models.ViewModels.BookSeriese.BookSeriesWithDetailViewModel
+﻿@model OwlsBookStore.Data.Models.ViewModels.BookSeriese.BookSeriesAddFormViewModel
 
 @{
     ViewBag.Title = "Edit";
 }
-<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
 
-<h2>Edit for @Model.Name</h2>
+<h2>Edit  for @Model.Name</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
+    
 <div class="form-horizontal">
 
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.Id)
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.UrlBookSeries, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.UrlBookSeries, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.UrlBookSeries, "", new { @class = "text-danger" })
-        </div>
-    </div>
+    @Html.HiddenFor(model => model.Writer.Id)
 
     <div class="form-group">
         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.UrlBookSeries, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.UrlBookSeries, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UrlBookSeries, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -44,16 +44,8 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Genre, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.Genre, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.DropDownListFor(model => model.Genre, Model.GenreList, "- select - ", htmlAttributes: new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Genre, "", new { @class = "text-danger" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Writer, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.Writer, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.Writer, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -65,15 +57,23 @@
         </div>
     </div>
 
+    <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
     <div class="form-group">
         @Html.LabelFor(model => model.Depiction, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.TextAreaFor(model => model.Depiction, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.Depiction, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Depiction, "", new { @class = "text-danger" })
         </div>
     </div>
     <script>CKEDITOR.replace('Depiction');</script>
 
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.GenreList, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GenreList, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GenreList, "", new { @class = "text-danger" })
+        </div>
+    </div>*@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">

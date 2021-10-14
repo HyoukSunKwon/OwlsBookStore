@@ -48,7 +48,7 @@ namespace OwlsBookStore.Web.Controllers
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
 
-            var model = db.GetBookSeriesById(id);
+            var model = db.GetBookSeriesAddFormInfo(id);
             if( model == null)
             {
                 return HttpNotFound();
@@ -60,7 +60,7 @@ namespace OwlsBookStore.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ValidateInput(false)]
-        public ActionResult Edit(BookSeriesWithDetailViewModel editBookSeries)
+        public ActionResult Edit(BookSeriesAddFormViewModel editBookSeries)
         {
             if( ModelState.IsValid)
             {

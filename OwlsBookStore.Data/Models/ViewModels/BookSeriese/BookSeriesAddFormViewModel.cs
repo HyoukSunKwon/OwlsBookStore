@@ -7,7 +7,7 @@ namespace OwlsBookStore.Data.Models.ViewModels.BookSeriese
     {
 
         public SelectList GenreList { get; set; }
-        public WriterBaseModel Writer { get; set; }
+        //public WriterBaseModel Writer { get; set; }
 
     }
 }

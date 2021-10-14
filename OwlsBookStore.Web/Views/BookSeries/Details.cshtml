@@ -7,21 +7,23 @@
 <h2>Details of @Model.Name</h2>
 
 <div>
+    
     <hr />
     <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-            <hr />
-        </dd>
         <dt>
             @Html.DisplayNameFor(model => model.UrlBookSeries)
         </dt>
 
         <dd>
             <img src="@Html.DisplayFor(model => model.UrlBookSeries)" height="100" width="100" />
+            <hr />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
             <hr />
         </dd>
 
@@ -44,15 +46,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Writer)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Writer)
-            <hr />
-        </dd>
-
-        <dt>
             @Html.DisplayNameFor(model => model.ReleaseDate)
         </dt>
 
@@ -67,11 +60,23 @@
 
         <dd>
             <div class="panel panel-default panel-body">
-                @Html.Raw(Model.Depiction)
-            </div>
+                @Html.DisplayFor(model => model.Depiction)
+            </div>            
             <hr />
         </dd>
-       
+        <dt>
+            Book Lists
+        </dt>
+        <dd>
+            @foreach (var item in Model.Books)
+            {
+                <li>
+                    @item.Name
+                </li>
+
+            }
+        </dd>
+
     </dl>
 </div>
 <p>
