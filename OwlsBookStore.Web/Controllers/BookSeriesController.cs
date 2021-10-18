@@ -47,8 +47,10 @@ namespace OwlsBookStore.Web.Controllers
             {
                 return new HttpStatusCodeResult(System.Net.HttpStatusCode.BadRequest);
             }
-
+            
             var model = db.GetBookSeriesAddFormInfo(id);
+            var genreList = db.GetAllGenre();
+            model.GenreList = new SelectList(genreList, "Name", "Name");
             if( model == null)
             {
                 return HttpNotFound();
@@ -62,7 +64,9 @@ namespace OwlsBookStore.Web.Controllers
         [ValidateInput(false)]
         public ActionResult Edit(BookSeriesAddFormViewModel editBookSeries)
         {
-            if( ModelState.IsValid)
+            //var genre = db.GetAllGenre();
+            //editBookSeries.GenreList = new SelectList(genre, "Name", "Name");
+            if ( ModelState.IsValid)
             {
                 var isEdittedBookSeries = db.EditBookSeries(editBookSeries);
                 

@@ -41,6 +41,7 @@ namespace OwlsBookStore.Data.Services
 
                cfg.CreateMap<Book, BookBaseModel>();
                cfg.CreateMap<Book, BookBaseViewModel>();
+               cfg.CreateMap<Book, AddBookListModel>().ReverseMap();
 
            });
 
@@ -191,6 +192,11 @@ namespace OwlsBookStore.Data.Services
             return bookSeries == null ? null : mapper.Map<BookSeries, BookSeriesAddFormViewModel>(bookSeries);
         }
 
+        public IEnumerable<BookBaseViewModel> GetAllBooks()
+        {
+            var bookList = db.Books.Include(b => b.BookSerieses).Include(w => w.Writer).OrderBy(b => b.Name);
+            return mapper.Map<IEnumerable<Book>, IEnumerable<BookBaseViewModel>>(bookList);
+        }
     }
-        
+
 }

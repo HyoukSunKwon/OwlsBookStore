@@ -62,9 +62,11 @@ namespace OwlsBookStore.Data.Models.EntityModels
         public string Name { get; set; }
         public string UrlBook { get; set; }
         public DateTime? ReleaseDate { get; set; }
+        public string Genre { get; set; }
+        public string Depiction { get; set; }
 
         public BookSeries BookSerieses { get; set; }
-        // public Writer Writer { get; set; }
+        public Writer Writer { get; set; }
 
     }
 }

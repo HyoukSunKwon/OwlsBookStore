@@ -80,6 +80,7 @@
     <Compile Include="Models\ViewModels\BookSeriese\BookSeriesAddFormViewModel.cs" />
     <Compile Include="Models\ViewModels\BookSeriese\BookSeriesBaseViewModel.cs" />
     <Compile Include="Models\ViewModels\BookSeriese\BookSeriesWithDetailViewModel.cs" />
+    <Compile Include="Models\ViewModels\Book\AddBookListModel.cs" />
     <Compile Include="Models\ViewModels\Book\BookBaseModel.cs" />
     <Compile Include="Models\ViewModels\Book\BookBaseViewModel.cs" />
     <Compile Include="Models\ViewModels\Genre\GenreBaseModel.cs" />

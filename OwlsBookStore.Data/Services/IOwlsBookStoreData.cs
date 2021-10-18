@@ -1,5 +1,6 @@
 ﻿using OwlsBookStore.Data.Models;
 using OwlsBookStore.Data.Models.EntityModels;
+using OwlsBookStore.Data.Models.ViewModels.Book;
 using OwlsBookStore.Data.Models.ViewModels.BookSeriese;
 using OwlsBookStore.Data.Models.ViewModels.Genre;
 using OwlsBookStore.Data.Models.ViewModels.Writer;
@@ -27,8 +28,6 @@ namespace OwlsBookStore.Data.Services
         bool DeleteBookSeries(int? id);
         BookSeriesBaseViewModel GetbookSeriesBaseInfoById(int? id);
         BookSeriesAddFormViewModel GetBookSeriesAddFormInfo(int? id);
-
-
-        //IEnumerable<Book> GetAllBooks();
+        IEnumerable<BookBaseViewModel> GetAllBooks();
     }
 }

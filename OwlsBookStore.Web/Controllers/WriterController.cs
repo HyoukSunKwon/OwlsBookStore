@@ -162,6 +162,8 @@ namespace OwlsBookStore.Web.Controllers
         //[Route("Writer/AddBookSeries/{id}")]
         public ActionResult AddBookSeries(BookSeriesAddFormViewModel newBookSeries)
         {
+            var genre = db.GetAllGenre();
+            newBookSeries.GenreList = new SelectList(genre, "Name", "Name");
             if(ModelState.IsValid)
             {
                 //newBookSeries.Id = 0;

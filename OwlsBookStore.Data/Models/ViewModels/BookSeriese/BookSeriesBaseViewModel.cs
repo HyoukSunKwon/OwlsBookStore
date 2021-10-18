@@ -22,8 +22,7 @@ namespace OwlsBookStore.Data.Models.ViewModels.BookSeriese
         [Display(Name="Book Publisher")]
         public string Publisher { get; set; }
         public string Genre { get; set; }
-        //public string Writer { get; set; }
-
+        
         [DisplayFormat(DataFormatString ="{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         [Display(Name="Release Date")]
@@ -32,7 +31,7 @@ namespace OwlsBookStore.Data.Models.ViewModels.BookSeriese
         [DataType(DataType.MultilineText)]
         public string Depiction { get; set; }
 
-        public WriterBaseViewModel Writer { get; set; }
+        public WriterBaseModel Writer { get; set; }
 
     }
 }
