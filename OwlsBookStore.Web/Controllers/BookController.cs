@@ -25,7 +25,8 @@ namespace OwlsBookStore.Web.Controllers
         // GET: BookList/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var model = db.GetBookBaseInfoById(id);
+            return View(model);
         }
 
         // GET: BookList/Create

@@ -212,6 +212,12 @@ namespace OwlsBookStore.Data.Services
             //return addedNewBook == null ? null : mapper.Map<Book, BookBaseViewModel>(addedNewBook);
         }
 
+        public BookBaseViewModel GetBookBaseInfoById(int id)
+        {
+            var book = db.Books.Include(w => w.BookSerieses).Include(w => w.BookSerieses.Writer).FirstOrDefault(b => b.Id == id);
+            return mapper.Map<Book, BookBaseViewModel>(book);
+        }
+
         //public AddBookListModel AddBookList(AddBookListModel newBook)
         //{
         //    var addedNewBook = db.Books.Add(mapper.Map<AddBookListModel, Book>(newBook));

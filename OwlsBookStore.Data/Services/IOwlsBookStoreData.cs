@@ -31,6 +31,7 @@ namespace OwlsBookStore.Data.Services
         IEnumerable<BookBaseViewModel> GetAllBooks();
         //AddBookListModel AddBookList(AddBookListModel newBook);
 
-        BookBaseViewModel AddBookList(BookBaseViewModel newBook); 
+        BookBaseViewModel AddBookList(BookBaseViewModel newBook);
+        BookBaseViewModel GetBookBaseInfoById(int id);
     }
 }
