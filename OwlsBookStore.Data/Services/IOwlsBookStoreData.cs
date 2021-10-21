@@ -29,5 +29,8 @@ namespace OwlsBookStore.Data.Services
         BookSeriesBaseViewModel GetbookSeriesBaseInfoById(int? id);
         BookSeriesAddFormViewModel GetBookSeriesAddFormInfo(int? id);
         IEnumerable<BookBaseViewModel> GetAllBooks();
+        //AddBookListModel AddBookList(AddBookListModel newBook);
+
+        BookBaseViewModel AddBookList(BookBaseViewModel newBook); 
     }
 }

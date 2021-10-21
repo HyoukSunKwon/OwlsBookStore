@@ -18,8 +18,6 @@ namespace OwlsBookStore.Data.Services
         public DbSet<BookSeries> BookSerieses { get; set; }
         public DbSet<Book> Books { get; set; }
 
-        public System.Data.Entity.DbSet<OwlsBookStore.Data.Models.ViewModels.BookSeriese.BookSeriesBaseViewModel> BookSeriesBaseViewModels { get; set; }
-
         public System.Data.Entity.DbSet<OwlsBookStore.Data.Models.ViewModels.Book.BookBaseViewModel> BookBaseViewModels { get; set; }
     }
 }

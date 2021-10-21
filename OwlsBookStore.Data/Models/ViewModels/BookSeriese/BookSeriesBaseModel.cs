@@ -11,7 +11,7 @@ namespace OwlsBookStore.Data.Models.ViewModels.BookSeriese
     {
         public int Id { get; set; }
 
-        [Required, StringLength(50)]
+        //[Required, StringLength(50)]
         [Display(Name="Book Seriese Name")]
         public string Name { get; set; }
     }

@@ -151,7 +151,7 @@ namespace OwlsBookStore.Web.Controllers
         {
             var form = new BookSeriesAddFormViewModel();
             var genreList = db.GetAllGenre();
-            form.Writer = db.GetWriterById(id);
+            form.Writer = db.GetWriterBaseInfoById(id);
             form.GenreList = new SelectList(genreList, "Name", "Name");
             return View(form);
         }

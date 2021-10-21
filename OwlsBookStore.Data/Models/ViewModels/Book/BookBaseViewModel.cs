@@ -18,13 +18,15 @@ namespace OwlsBookStore.Data.Models.ViewModels.Book
         }
         [Display(Name="Book Image")]
         public string UrlBook{ get; set; }
+
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [DataType(DataType.Date)]
         [Display(Name = "Release Date")]
         public DateTime? ReleseDate { get; set; }
         public string Genre { get; set; }
 
-        public BookSeriesWithDetailViewModel BookSerieses { get; set; }
+        [Display(Name="Book Series")]
+        public BookSeriesBaseViewModel BookSerieses { get; set; }
         public WriterBaseModel Writer { get; set; }
     }
 }

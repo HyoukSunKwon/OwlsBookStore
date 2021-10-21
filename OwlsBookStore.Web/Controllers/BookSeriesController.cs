@@ -1,4 +1,5 @@
-﻿using OwlsBookStore.Data.Models.ViewModels.BookSeriese;
+﻿using OwlsBookStore.Data.Models.ViewModels.Book;
+using OwlsBookStore.Data.Models.ViewModels.BookSeriese;
 using OwlsBookStore.Data.Services;
 using System;
 using System.Collections.Generic;
@@ -123,6 +124,33 @@ namespace OwlsBookStore.Web.Controllers
                 return View(bookSeriesToDeleted);
             }
 
+        }
+
+        [HttpGet]
+        public ActionResult AddBookList(int id)
+        {
+            var form = new BookBaseViewModel();
+            form.BookSerieses = db.GetbookSeriesBaseInfoById(id);
+            return View(form);
+        }
+
+        [HttpPost]
+        [ValidateInput(false)]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddBookList(BookBaseViewModel newBook)
+        {
+            //newBook.Writer = db.GetWriterById(newBook.Writer.Id);
+            
+            if( ModelState.IsValid)
+            {
+                BookBaseViewModel addedNewBook = db.AddBookList(newBook);
+                //addedNewBook.BookSerieses = db.GetbookSeriesBaseInfoById();
+                return RedirectToAction("Index", "Book");
+            }
+            else
+            {
+                return View("AddBookList");
+            }
         }
 
     }

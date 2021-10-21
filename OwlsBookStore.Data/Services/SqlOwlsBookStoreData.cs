@@ -40,7 +40,7 @@ namespace OwlsBookStore.Data.Services
                cfg.CreateMap<Genre, GenreBaseModel>().ReverseMap();
 
                cfg.CreateMap<Book, BookBaseModel>();
-               cfg.CreateMap<Book, BookBaseViewModel>();
+               cfg.CreateMap<Book, BookBaseViewModel>().ReverseMap();
                cfg.CreateMap<Book, AddBookListModel>().ReverseMap();
 
            });
@@ -197,6 +197,26 @@ namespace OwlsBookStore.Data.Services
             var bookList = db.Books.Include(b => b.BookSerieses).Include(w => w.Writer).OrderBy(b => b.Name);
             return mapper.Map<IEnumerable<Book>, IEnumerable<BookBaseViewModel>>(bookList);
         }
+
+        public BookBaseViewModel AddBookList(BookBaseViewModel newBook)
+        {
+            var addedNewBook = mapper.Map<BookBaseViewModel, Book>(newBook);
+            addedNewBook.Writer = db.Writers.Find(newBook.BookSerieses.Writer.Id);
+            db.Books.Add(addedNewBook);
+            db.SaveChanges();
+
+            return addedNewBook == null ? null : mapper.Map<Book, BookBaseViewModel>(addedNewBook);
+            
+            //var addedNewBook = db.Books.Add(mapper.Map<BookBaseViewModel, Book>(newBook));
+            //db.SaveChanges();
+            //return addedNewBook == null ? null : mapper.Map<Book, BookBaseViewModel>(addedNewBook);
+        }
+
+        //public AddBookListModel AddBookList(AddBookListModel newBook)
+        //{
+        //    var addedNewBook = db.Books.Add(mapper.Map<AddBookListModel, Book>(newBook));
+        //    return addedNewBook == null ? null : mapper.Map<Book, AddBookListModel>(addedNewBook);
+        //}
     }
 
 }
