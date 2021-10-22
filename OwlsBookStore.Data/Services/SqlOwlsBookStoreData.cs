@@ -42,6 +42,7 @@ namespace OwlsBookStore.Data.Services
                cfg.CreateMap<Book, BookBaseModel>();
                cfg.CreateMap<Book, BookBaseViewModel>().ReverseMap();
                cfg.CreateMap<Book, AddBookListModel>().ReverseMap();
+               cfg.CreateMap<Book, BookWithDetailViewModel>().ReverseMap();
 
            });
 
@@ -198,14 +199,14 @@ namespace OwlsBookStore.Data.Services
             return mapper.Map<IEnumerable<Book>, IEnumerable<BookBaseViewModel>>(bookList);
         }
 
-        public BookBaseViewModel AddBookList(BookBaseViewModel newBook)
+        public BookWithDetailViewModel AddBookList(BookWithDetailViewModel newBook)
         {
-            var addedNewBook = mapper.Map<BookBaseViewModel, Book>(newBook);
+            var addedNewBook = mapper.Map<BookWithDetailViewModel, Book>(newBook);
             addedNewBook.Writer = db.Writers.Find(newBook.BookSerieses.Writer.Id);
             db.Books.Add(addedNewBook);
             db.SaveChanges();
 
-            return addedNewBook == null ? null : mapper.Map<Book, BookBaseViewModel>(addedNewBook);
+            return addedNewBook == null ? null : mapper.Map<Book, BookWithDetailViewModel>(addedNewBook);
             
             //var addedNewBook = db.Books.Add(mapper.Map<BookBaseViewModel, Book>(newBook));
             //db.SaveChanges();
@@ -216,6 +217,12 @@ namespace OwlsBookStore.Data.Services
         {
             var book = db.Books.Include(w => w.BookSerieses).Include(w => w.BookSerieses.Writer).FirstOrDefault(b => b.Id == id);
             return mapper.Map<Book, BookBaseViewModel>(book);
+        }
+
+        public BookWithDetailViewModel GetBookDetailInfo(int id)
+        {
+            var book = db.Books.Include(w => w.BookSerieses).Include(w => w.BookSerieses.Writer).FirstOrDefault(b => b.Id == id);
+            return mapper.Map<Book, BookWithDetailViewModel>(book);
         }
 
         //public AddBookListModel AddBookList(AddBookListModel newBook)

@@ -83,6 +83,7 @@
     <Compile Include="Models\ViewModels\Book\AddBookListModel.cs" />
     <Compile Include="Models\ViewModels\Book\BookBaseModel.cs" />
     <Compile Include="Models\ViewModels\Book\BookBaseViewModel.cs" />
+    <Compile Include="Models\ViewModels\Book\BookWithDetailViewModel.cs" />
     <Compile Include="Models\ViewModels\Genre\GenreBaseModel.cs" />
     <Compile Include="Models\ViewModels\Writer\WriterBaseModel.cs" />
     <Compile Include="Models\ViewModels\Writer\WriterBaseViewModel.cs" />

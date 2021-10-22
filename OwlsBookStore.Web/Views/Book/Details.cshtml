@@ -1,4 +1,4 @@
-﻿@model OwlsBookStore.Data.Models.ViewModels.Book.BookBaseViewModel
+﻿@model OwlsBookStore.Data.Models.ViewModels.Book.BookWithDetailViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -7,7 +7,6 @@
 <h2>Details of @Model.Name</h2>
 
 <div>
-  
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -44,7 +43,6 @@
             @Html.DisplayFor(model => model.BookSerieses.Genre)
             <hr />
         </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.Writer)
         </dt>
@@ -54,15 +52,13 @@
             <hr />
         </dd>
         <dt>
-            @Html.DisplayNameFor(model => model.BookSerieses.Name)
+            @Html.DisplayNameFor(model => model.BookSerieses)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.BookSerieses.Name)
             <hr />
         </dd>
-
-
 
 
     </dl>

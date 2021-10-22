@@ -129,7 +129,7 @@ namespace OwlsBookStore.Web.Controllers
         [HttpGet]
         public ActionResult AddBookList(int id)
         {
-            var form = new BookBaseViewModel();
+            var form = new BookWithDetailViewModel();
             form.BookSerieses = db.GetbookSeriesBaseInfoById(id);
             return View(form);
         }
@@ -137,13 +137,13 @@ namespace OwlsBookStore.Web.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult AddBookList(BookBaseViewModel newBook)
+        public ActionResult AddBookList(BookWithDetailViewModel newBook)
         {
             //newBook.Writer = db.GetWriterById(newBook.Writer.Id);
             
             if( ModelState.IsValid)
             {
-                BookBaseViewModel addedNewBook = db.AddBookList(newBook);
+                BookWithDetailViewModel addedNewBook = db.AddBookList(newBook);
                 //addedNewBook.BookSerieses = db.GetbookSeriesBaseInfoById();
                 return RedirectToAction("Index", "Book");
             }

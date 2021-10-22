@@ -27,6 +27,6 @@ namespace OwlsBookStore.Data.Models.ViewModels.Book
 
         [Display(Name="Book Series")]
         public BookSeriesBaseViewModel BookSerieses { get; set; }
-        public WriterBaseModel Writer { get; set; }
+        //public WriterBaseModel Writer { get; set; }
     }
 }

@@ -25,35 +25,14 @@ namespace OwlsBookStore.Web.Controllers
         // GET: BookList/Details/5
         public ActionResult Details(int id)
         {
-            var model = db.GetBookBaseInfoById(id);
+            var model = db.GetBookDetailInfo(id);
             return View(model);
-        }
-
-        // GET: BookList/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: BookList/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
         }
 
         // GET: BookList/Edit/5
         public ActionResult Edit(int id)
         {
+            
             return View();
         }
 
